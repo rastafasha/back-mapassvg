@@ -10,11 +10,18 @@ class Api_User extends CI_Controller {
 		$this->load->model('api_model_user');
 		$this->load->helper('url');
 		$this->load->helper('text');
+
+		header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json");
+		header("Access-Control-Allow-Headers: authorization, Content-Type");
+        header("Access-Control-Request-Methods: GET, PUT, POST, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Headers: Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Access-Control-Allow-Request-Method");
     }
     
 	public function users()
 	{
-		header("Access-Control-Allow-Origin: *");
+		
 
 		$users = $this->api_model_user->get_users($featured=false, $recentpost=false);
 
@@ -44,8 +51,7 @@ class Api_User extends CI_Controller {
 
 	public function featured_users()
 	{
-		header("Access-Control-Allow-Origin: *");
-
+		
 		$users = $this->api_model_user->get_users($featured=true, $recentpost=false);
 
 		$posts = array();
@@ -75,7 +81,6 @@ class Api_User extends CI_Controller {
 
 	public function user($id)
 	{
-		header("Access-Control-Allow-Origin: *");
 		
 		$user = $this->api_model_user->get_user($id);
 
@@ -99,8 +104,7 @@ class Api_User extends CI_Controller {
 
 	public function recent_users()
 	{
-		header("Access-Control-Allow-Origin: *");
-
+		
 		$users = $this->api_model_user->get_users($featured=false, $recentpost=5);
 
 		$posts = array();
@@ -135,9 +139,7 @@ class Api_User extends CI_Controller {
 
 	public function adminUsers()
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -169,9 +171,7 @@ class Api_User extends CI_Controller {
 
 	public function adminUser($id)
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -204,10 +204,7 @@ class Api_User extends CI_Controller {
 
 	public function createUser()
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Request-Headers: GET,POST,OPTIONS,DELETE,PUT");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -275,10 +272,7 @@ class Api_User extends CI_Controller {
 
 	public function updateUser($id)
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -352,10 +346,7 @@ class Api_User extends CI_Controller {
 
 	public function deleteUser($id)
 	{
-		header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);

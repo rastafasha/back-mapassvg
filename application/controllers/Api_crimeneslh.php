@@ -10,12 +10,18 @@ class Api_Crimeneslh extends CI_Controller {
 		$this->load->model('api_model_crimeneslh');
 		$this->load->helper('url');
 		$this->load->helper('text');
+
+		header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json");
+		header("Access-Control-Allow-Headers: authorization, Content-Type");
+        header("Access-Control-Request-Methods: GET, PUT, POST, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Headers: Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Access-Control-Allow-Request-Method");
 	}
 
 	public function crimeneslhs()
 	{
-		header("Access-Control-Allow-Origin: *");
-
+		
 		$crimeneslhs = $this->api_model_crimeneslh->get_crimeneslhs($featured=false, $recentpost=false);
 
 		$posts = array();
@@ -47,7 +53,7 @@ class Api_Crimeneslh extends CI_Controller {
 
 	public function crimeneslh($code)
 	{
-		header("Access-Control-Allow-Origin: *");
+		
 		
 		$crimeneslh = $this->api_model_crimeneslh->get_crimeneslh($code);
 
@@ -80,9 +86,7 @@ class Api_Crimeneslh extends CI_Controller {
 
 	public function adminCrimeneslhs()
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -115,8 +119,7 @@ class Api_Crimeneslh extends CI_Controller {
 
 	public function adminCrimeneslh($id)
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
+		
 
 		$token = $this->input->get_request_header('Authorization');
 
@@ -152,9 +155,7 @@ class Api_Crimeneslh extends CI_Controller {
 
 	public function createCrimeneslh()
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Request-Headers: GET,POST,OPTIONS,DELETE,PUT");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
+		
 
 		$token = $this->input->get_request_header('Authorization');
 
@@ -210,9 +211,7 @@ class Api_Crimeneslh extends CI_Controller {
 
 	public function updateCrimeneslh($id)
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+		
 
 		$token = $this->input->get_request_header('Authorization');
 
@@ -267,9 +266,7 @@ class Api_Crimeneslh extends CI_Controller {
 
 	public function deleteCrimeneslh($id)
 	{
-		header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
+		
 
 		$token = $this->input->get_request_header('Authorization');
 

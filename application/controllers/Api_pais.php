@@ -10,11 +10,18 @@ class Api_Pais extends CI_Controller {
 		$this->load->model('api_model_pais');
 		$this->load->helper('url');
 		$this->load->helper('text');
+
+		header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json");
+		header("Access-Control-Allow-Headers: authorization, Content-Type");
+        header("Access-Control-Request-Methods: GET, PUT, POST, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Headers: Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Access-Control-Allow-Request-Method");
 	}
 
 	public function paises()
 	{
-		header("Access-Control-Allow-Origin: *");
+		
 
 		$paises = $this->api_model_pais->get_paises($featured=false, $recentpost=false);
 
@@ -30,7 +37,6 @@ class Api_Pais extends CI_Controller {
 					'informacion' => $pais->informacion,
 					'ciudades' => $pais->ciudades,
 					'isActive' => $pais->isActive,
-					'created_at' => $pais->created_at
 				);
 			}
 		}
@@ -44,7 +50,7 @@ class Api_Pais extends CI_Controller {
 
 	public function pais($code)
 	{
-		header("Access-Control-Allow-Origin: *");
+		
 		
 		$pais = $this->api_model_pais->get_pais($code);
 		$post = array(
@@ -79,9 +85,7 @@ class Api_Pais extends CI_Controller {
 
 	public function adminPaises()
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -110,9 +114,7 @@ class Api_Pais extends CI_Controller {
 
 	public function adminPais($id)
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -142,10 +144,7 @@ class Api_Pais extends CI_Controller {
 
 	public function createPais()
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Request-Headers: GET,POST,OPTIONS,DELETE,PUT");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -190,10 +189,7 @@ class Api_Pais extends CI_Controller {
 
 	public function updatePais($id)
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -236,10 +232,7 @@ class Api_Pais extends CI_Controller {
 
 	public function deletePais($id)
 	{
-		header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -266,9 +259,7 @@ class Api_Pais extends CI_Controller {
 
 	public function countries()
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);

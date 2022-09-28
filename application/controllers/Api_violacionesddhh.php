@@ -10,12 +10,18 @@ class Api_Violacionesddhh extends CI_Controller {
 		$this->load->model('api_model_violacionesddhh');
 		$this->load->helper('url');
 		$this->load->helper('text');
+
+		header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json");
+		header("Access-Control-Allow-Headers: authorization, Content-Type");
+        header("Access-Control-Request-Methods: GET, PUT, POST, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Headers: Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Access-Control-Allow-Request-Method");
 	}
 
 	public function violacionesddhhs()
 	{
-		header("Access-Control-Allow-Origin: *");
-
+		
 		$violacionesddhhs = $this->api_model_violacionesddhh->get_violacionesddhhs($featured=false, $recentpost=false);
 
 		$posts = array();
@@ -48,8 +54,6 @@ class Api_Violacionesddhh extends CI_Controller {
 	
 	public function violacionesddhh($code)
 	{
-		header("Access-Control-Allow-Origin: *");
-		
 		$violacionesddhh = $this->api_model_violacionesddhh->get_violacionesddhh($code);
 
 
@@ -81,9 +85,7 @@ class Api_Violacionesddhh extends CI_Controller {
 
 	public function adminViolacionesddhhs()
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -117,9 +119,7 @@ class Api_Violacionesddhh extends CI_Controller {
 
 	public function adminViolacionesddhh($id)
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -154,10 +154,7 @@ class Api_Violacionesddhh extends CI_Controller {
 
 	public function createViolacionesddhh()
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Request-Headers: GET,POST,OPTIONS,DELETE,PUT");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -210,10 +207,7 @@ class Api_Violacionesddhh extends CI_Controller {
 
 	public function updateViolacionesddhh($id)
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -268,10 +262,7 @@ class Api_Violacionesddhh extends CI_Controller {
 
 	public function deleteViolacionesddhh($id)
 	{
-		header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);

@@ -11,13 +11,18 @@ class Api_Contact extends CI_Controller {
 		
 		$this->load->helper('url');
 		$this->load->helper('text');
+
+		header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json");
+		header("Access-Control-Allow-Headers: authorization, Content-Type");
+        header("Access-Control-Request-Methods: GET, PUT, POST, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Headers: Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Access-Control-Allow-Request-Method");
 	}
 
     public function contact()
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Request-Headers: GET,POST,OPTIONS,DELETE,PUT");
-		header('Access-Control-Allow-Headers: Accept,Accept-Language,Content-Language,Content-Type');
+		
 
 		$formdata = json_decode(file_get_contents('php://input'), true);
 
@@ -53,7 +58,7 @@ class Api_Contact extends CI_Controller {
 
 	public function sendemail($contactData)
 	{
-		$message = '<p>Hi, <br />Alguien ha escrito a través del webapp SVCBMF.</p>';
+		$message = '<p>Hi, <br />Alguien ha escrito a través del webapp REDCLH.</p>';
 		$message .= '<p><strong>Nombre y Apellido: </strong>'.$contactData['name'].'</p>';
 		$message .= '<p><strong>Email: </strong>'.$contactData['email'].'</p>';
 		$message .= '<p><strong>Teléfono: </strong>'.$contactData['phone'].'</p>';

@@ -10,12 +10,17 @@ class Api_Blog extends CI_Controller {
 		$this->load->model('api_model_blog');
 		$this->load->helper('url');
 		$this->load->helper('text');
+
+		header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json");
+		header("Access-Control-Allow-Headers: authorization, Content-Type");
+        header("Access-Control-Request-Methods: GET, PUT, POST, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Headers: Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Access-Control-Allow-Request-Method");
 	}
 
 	public function blogs()
 	{
-		header("Access-Control-Allow-Origin: *");
-
 		$blogs = $this->api_model_blog->get_blogs($featured=false, $recentpost=false);
 
 		$posts = array();
@@ -45,7 +50,6 @@ class Api_Blog extends CI_Controller {
 
 	public function featured_blogs()
 	{
-		header("Access-Control-Allow-Origin: *");
 
 		$blogs = $this->api_model_blog->get_blogs($featured=true, $recentpost=false);
 
@@ -76,7 +80,6 @@ class Api_Blog extends CI_Controller {
 
 	public function blog($id)
 	{
-		header("Access-Control-Allow-Origin: *");
 		
 		$blog = $this->api_model_blog->get_blog($id);
 
@@ -99,7 +102,6 @@ class Api_Blog extends CI_Controller {
 
 	public function recent_blogs()
 	{
-		header("Access-Control-Allow-Origin: *");
 
 		$blogs = $this->api_model_blog->get_blogs($featured=false, $recentpost=5);
 
@@ -135,9 +137,7 @@ class Api_Blog extends CI_Controller {
 
 	public function adminBlogs()
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -165,8 +165,6 @@ class Api_Blog extends CI_Controller {
 
 	public function adminBlog($id)
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
 
 		$token = $this->input->get_request_header('Authorization');
 
@@ -196,10 +194,7 @@ class Api_Blog extends CI_Controller {
 
 	public function createBlog()
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Request-Headers: GET,POST,OPTIONS,DELETE,PUT");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-
+		
 		$token = $this->input->get_request_header('Authorization');
 
 		$isValidToken = $this->api_model->checkToken($token);
@@ -264,9 +259,7 @@ class Api_Blog extends CI_Controller {
 
 	public function updateBlog($id)
 	{
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
-		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+		
 
 		$token = $this->input->get_request_header('Authorization');
 
@@ -338,9 +331,7 @@ class Api_Blog extends CI_Controller {
 
 	public function deleteBlog($id)
 	{
-		header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-		header("Access-Control-Allow-Headers: authorization, Content-Type");
+		
 
 		$token = $this->input->get_request_header('Authorization');
 

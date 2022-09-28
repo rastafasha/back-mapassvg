@@ -479,7 +479,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `first_name`, `last_name`, `token`, `is_active`, `created_at`, `image`, `role`) VALUES
-(1, 'admin', '6BA830073D9697D242F924BA98060AB6', 'Admin', 'redCLH', 'a1aed1a77c0916c43a4a67afe49af265', 1, '2018-10-27 05:25:13', 'logo.jpg', 'admin');
+(1, 'admin', 'abc09ab6aa88ffb37494909cd34e30ac', 'Admin', 'redCLH', 'a1aed1a77c0916c43a4a67afe49af265', 1, '2018-10-27 05:25:13', 'logo.jpg', 'admin');
 
 -- --------------------------------------------------------
 
